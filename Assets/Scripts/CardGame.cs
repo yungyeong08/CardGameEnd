@@ -16,6 +16,8 @@ public class CardGame : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void StartGame()
     {
+        SoundManager.Instance.PlayBGM();
+
         List<int> pairNumbers = GenerratePairNumbers(cards.Count);
 
         for (int i = 0; i < pairNumbers.Count; i++)
@@ -68,12 +70,14 @@ public class CardGame : MonoBehaviour
         if (firstCard == null)
         {
             firstCard = card;
-            firstCard.isFront = true;
+            firstCard.Flip(true);
+            SoundManager.Instance.PlaySoundFx();
         }
         else
         {
             secondCard = card;
             secondCard.Flip(true);
+            SoundManager.Instance.PlaySoundFx();
         }
 
         if (firstCard != null && secondCard != null)
